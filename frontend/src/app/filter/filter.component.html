@@ -1,0 +1,352 @@
+<!-- BUSQUEDA / FILTROS  -->
+<div class="filterContainer">
+    <div class="searchContainer">
+        <div class="dflex search">
+            <div class="dflex flex-row rounded-input-container">
+                <button class="btn-left btn-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                    </svg>
+                </button>
+                <div class="custom-input-wrapper">
+                    <input (keydown.enter)="addToList()" (keypress)="validateInput($event)" type="text" id="idResult"
+                        title=" N° de equipo.. Separe con coma(,). Para rango use guion (-)"
+                        class="form-control m2 rounded-input"
+                        placeholder=" N° de equipo.. Separe con coma(,). Para rango use guion (-)">
+                </div>
+                <button (click)="addToList()" class="btn-right btn-icon" title="{{ es.incorporar }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; width: 20px; fill: rgb(0, 0, 0);"
+                        viewBox="0 0 448 512">
+                        <path
+                            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                    </svg>
+                </button>
+            </div> 
+            <!-- <select (change)="orderBy($event.target.value)" class="flex-row rounded-input-container orderBy">
+                <option value="fecha">Fecha</option>
+                <option value="numerico">Numerico</option>
+                <option value="fallados">Fallados</option>
+            </select> -->
+        </div>
+    </div>
+    <!-- BOTONES -->
+    <div class="menuFilters">
+        <button class="btn btn-primary" *ngIf="this.datas.length !== 0" (click)="checkAll()"
+            title='{{ es.marcarTodos}}'>
+            {{ es.marcarTodos}}
+        </button>
+        <button class="btn btn-primary" *ngIf="this.datas.length !== 0" (click)="deleteAll()"
+            title='{{ es.borrarSeleccionados}}'>
+            {{ es.borrarSeleccionados}}
+        </button>
+        <!-- <button   class="btn btn-secondary" *ngIf="this.datas.length !== 0" (click)="flexDirection()" title='{{ es.listaColumna}}'>  
+            {{es.listaColumna }}
+          <svg xmlns="http://www.w3.org/2000/svg" style="height: 35px;" viewBox="0 0 512 512"> <path d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z"/></svg> 
+
+        </button> -->
+        <!-- <button   class="btn btn-secondary" *ngIf="this.datas.length !== 0" (click)="cleanAll()" title='{{ es.detenerLoading}}'>  
+            {{es.detenerLoading }}
+             <svg xmlns="http://www.w3.org/2000/svg"  style="height: 35px;"  viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112L0 400c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48L48 64zm192 0c-26.5 0-48 21.5-48 48l0 288c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48l-32 0z"/></svg>
+        </button> -->
+        <button class="btn btn-danger" *ngIf="fails.length>0" (click)="cleanFails()" title='{{ es.borrarFallados}}'>
+            {{es.borrarFallados }}
+        </button>
+        <button class="btn btn-danger" *ngIf="fails.length>0" (click)="retryFails()" title='{{ es.reintentarFallados}}'>
+            {{es.reintentarFallados }}
+        </button>
+        <!-- <button class="btn btn-secondary" *ngIf="this.datas.length !== 0" (click)="updateAll()"
+            title='{{ es.actualizacion}}'>
+            {{es.actualizacion }}
+        </button> -->
+        <button class="btn btn-secondary" *ngIf="this.datas.length !== 0" (click)="updateStates()"
+            title='{{ es.volverConectar}}'>
+            {{es.volverConectar }}
+        </button>
+        <button class="btn btn-secondary" *ngIf="this.datas.length !== 0" (click)="resetAll()"
+            title='{{es.reiniciarSeleccionados }}'>
+            {{es.reiniciarSeleccionados }}
+          </button>
+    </div>
+
+    <!-- CARDS -->
+    <div class="allCards">
+        <!-- LOADING -->
+        <div class="card card-Loading" *ngFor="let loader of loaders">
+            <div class="card-content">
+                <button class="card-x" (click)="deleteFromLoaders(loader)">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;" viewBox="0 0 448 512">
+                        <path
+                            d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                    </svg>
+                </button>
+                <div class="card-item">
+                    <span class="card-title info loadernum" title="Numero {{loader}}">{{ loader }}</span>
+                </div>
+                <div class="card-item centerG loaderCenter" style="padding-top: 1%;">
+                    <div class="loader">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FAILS-->
+        <div class="card card-fails" *ngFor="let fail of fails">
+            <div class="card-content">
+                <button class="card-x" (click)="deleteOfFail(fail)">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;" viewBox="0 0 448 512">
+                        <path
+                            d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                    </svg>
+                </button>
+                <div class="card-item">
+                    <span class="card-title info loadernum" title="Numero {{fail}}">{{ fail }}</span>
+                </div>
+                <div class="card-item centerG loaderCenter" style="padding-top: 1%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;" viewBox="0 0 512 512">
+                        <path
+                            d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" />
+                    </svg>
+                </div>
+                <span class="notButton x-medium"> {{es.errorAlConsultar}} </span>
+            </div>
+            <div>
+                <button class="btnFootCard  btn-primary" (click)="resetFail(fail)">{{es.reintentar}} </button>
+            </div>
+        </div>
+        <!-- DATAS  -->
+        <div class="result" *ngIf="datas && datas.length > 0">
+            <div [class.f-dir-colum]="isColumnDirection" class="cards-container" style="font-size: 14px;">
+                <div class="card" *ngFor="let data of datas">
+                    <!-- RESETEANDO -->
+                    <div class="card-content-reset card-contentReset" *ngIf="data.isLoading">
+                        <button class="card-x" (click)="deleteOfList(data)">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                            </svg>
+                        </button>
+                        <div class="card-item">
+                            <span class="card-title info loadernum" title="Numero {{data.name}}">{{ data.name }}</span>
+                        </div>
+                        <div class="card-item loaderCenter centerReset" style="padding-top: 1%;">
+                            <div class="loader" style="margin-bottom: 5px;">
+                            </div>
+                            {{es.reiniciando}}
+                        </div>
+                    </div>
+                    <!-- ETERGEAS -->
+                    <!-- INFO ETERGEA  -->
+                    <div class="card-content" *ngIf="!data.isLoading">
+                        <button class="card-x" (click)="deleteOfList(data)">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;"
+                                viewBox="0 0 448 512">
+                                <path
+                                    d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                            </svg>
+                        </button>
+                        <div class="card-item topcard">
+                            <input id="data.name" class="checkboxEach" type="checkbox" [(ngModel)]="data.checked">
+                            <div *ngIf="(getDeviceStatusGPS(data.data.GPS,0) === true || getDeviceStatusGPS(data.data.GPS,1) === true) && !data.isInMap"
+                                (click)="toMap(data)" class="mapsIcon">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;"
+                                    viewBox="0 0 384 512">
+                                    <path
+                                        d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                                </svg>
+                            </div>
+                            <div *ngIf="(getDeviceStatusGPS(data.data.GPS,0) || getDeviceStatusGPS(data.data.GPS,1)) && data.isInMap"
+                                (click)="toMap(data)" class="mapsIcon">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: black;"
+                                    viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                                </svg>
+                            </div>
+                            <div *ngIf="!(getDeviceStatusGPS(data.data.GPS,0) && !getDeviceStatusGPS(data.data.GPS,1)) && !data.isInMap"
+                                class="mapsIcon">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="height: 20px; fill: transparent;"
+                                    viewBox="0 0 512 512">
+                                    <path
+                                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-title info" title="Numero {{data.name}}">{{ data.name }}</span>
+                        </div>
+                        <!-- GPS   -->
+                        <div class="card-item centerG">
+                            <span class="noPG"> {{es.gps}} </span>
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,0)  === false" (click)="reebotThis('gps1')"
+                                class="status notButton" title="GPS 1: Desconectado">
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#EF9270"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"  d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,0) === true" (click)="reebotThis('gps1')"
+                                class="status notButton" title="GPS 1 :  OK">
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#63FF5A;"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);" d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,0) == 'Modem desconectado' || getDeviceStatusGPS(data.data.GPS,0) == 'Antena sin señal'" (click)="reebotThis('gps1')"
+                                class="status notButton" title={{getDeviceStatusGPS(data.data.GPS,0)}}>
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:gray;"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);" d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>  
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,1) == 'Modem desconectado' || getDeviceStatusGPS(data.data.GPS,1) == 'Antena sin señal'" (click)="reebotThis('gps2')"
+                                class="status  notButton" title={{getDeviceStatusGPS(data.data.GPS,1)}}>
+                                2&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:gray"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"   d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,1)  === false" (click)="reebotThis('gps2')"
+                                class="status  notButton" title=" GPS 2 : Desconectado">
+                                2&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#EF9270"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"   d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="getDeviceStatusGPS(data.data.GPS,1) === true" (click)="reebotThis('gps2')"
+                                class="status   notButton" title="GPS 2 :  OK">
+                                2&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#63FF5A;"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"    d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- MAP IN GPS  -->
+                        <div *ngIf="data.isInMap && mapInit" class="mapInWindows">
+                            <div [id]="'myMap' + data.name" class="mapsContainer"></div>
+                            <button (click)="goToMap(data)" class="blackButton">{{es.ir}}</button>
+                            <!-- <div class="dflex fdirRow">
+                                <button (click)="closeMapPopUp(data)" class="notButton black" >{{es.cerrar}}</button>
+                            </div> -->
+                        </div>
+                        <!-- GPRS  -->
+                        <div class="card-item centerG">
+                            <span class="noPG"> {{es.gprs}}</span>
+                            <button *ngIf="!getDeviceStatusGPRS(data.data.GPRS,0)" (click)="reebotThis('gprs1')"
+                                class="status  notButton" title="GPRS 1: Desconectado">
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#EF9270"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"   d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button>
+                            <button *ngIf="getDeviceStatusGPRS(data.data.GPRS,0)" (click)="reebotThis('gprs1')"
+                                class="status   notButton" title="GPRS 1 :  OK">
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#63FF5A;"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"   d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg> 
+                            </button>
+                            <!-- CUANDO TENGA EL GRIS -->
+                            <!-- <button *ngIf="getDeviceStatusGPRS(data.data.GPRS,0)" (click)="reebotThis('gprs1')"
+                                class="status   notButton" title="GPRS 1 :  OK">
+                                1&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 10px; fill:lightgray;" viewBox="0 0 448 512"> <path d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z"/></svg>
+                            </button> -->
+                            <button *ngIf="!getDeviceStatusGPRS(data.data.GPRS,1)" (click)="reebotThis('gprs2')"
+                                class="status  notButton" title=" GPRS 2 : Desconectado">
+                                2&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#EF9270"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"   d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+
+                            </button>
+                            <button *ngIf="getDeviceStatusGPRS(data.data.GPRS,1)" (click)="reebotThis('gprs2')"
+                                class="status   notButton" title="GPRS 2 :  OK">
+                                2&nbsp;<svg xmlns="http://www.w3.org/2000/svg" style="height: 15px; fill:#63FF5A;"
+                                    class="" viewBox="0 0 448 512">
+                                    <path
+                                    style="transform: translateY(60px);"    d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
+                                </svg>
+                            </button> 
+                        </div>
+                        <!-- ALIM Y BATERIA  -->
+                        <div class="card-item centerG alimBat" style="padding-top: 1%; margin-left: -5px;"> 
+                            <span class="noPG"> {{es.alim}}</span> 
+                            <!-- bateria llena lb1 mp0: funcionando con bateria   --> 
+                            <button *ngIf="getDeviceStatusPM(data.data.PM) === 2" (click)="reebotThis('alim')"
+                                class="card-title svgContent notButton" title="Funcionando con bateria">
+                                <svg class="batMargin" xmlns="httsp://www.w3.org/2000/svg" width="26px" viewBox="0 0 576 512">
+                                    <path
+                                        d="M464 160c8.8 0 16 7.2 16 16l0 160c0 8.8-7.2 16-16 16L80 352c-8.8 0-16-7.2-16-16l0-160c0-8.8 7.2-16 16-16l384 0zM80 96C35.8 96 0 131.8 0 176L0 336c0 44.2 35.8 80 80 80l384 0c44.2 0 80-35.8 80-80l0-16c17.7 0 32-14.3 32-32l0-64c0-17.7-14.3-32-32-32l0-16c0-44.2-35.8-80-80-80L80 96zm368 96L96 192l0 128 352 0 0-128z" />
+                                </svg>
+                            </button>
+                            <!-- bateria media  lb1 mp1: alimentacion principal y bat cargando -->
+                            <button *ngIf="getDeviceStatusPM(data.data.PM) === 3" (click)="reebotThis('alim')"
+                                class="card-title svgContent notButton" title="Conectada y cargando ">
+                                <svg class="batMargin" xmlns="http://www.w3.org/2000/svg" width="17px" viewBox="0 0 384 512">
+                                    <path
+                                        d="M96 0C78.3 0 64 14.3 64 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM288 0c-17.7 0-32 14.3-32 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l0 32c0 77.4 55 142 128 156.8l0 67.2c0 17.7 14.3 32 32 32s32-14.3 32-32l0-67.2C297 398 352 333.4 352 256l0-32c17.7 0 32-14.3 32-32s-14.3-32-32-32L32 160z" />
+                                </svg>
+                            </button> 
+                               <!-- bateria muerta  lb0 mp1: falla de bateria/bateria deteriorada  -->
+                               <button *ngIf="getDeviceStatusPM(data.data.PM) === 4" (click)="reebotThis('alim')"
+                               class="card-title svgContent notButton" title="Sin conexion">
+                               <svg class="batMargin" xmlns="http://www.w3.org/2000/svg" width="26px" viewBox="0 0 576 512"> 
+                                   <path
+                                       d="M80 160c-8.8 0-16 7.2-16 16l0 160c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-160c0-8.8-7.2-16-16-16L80 160zM0 176c0-44.2 35.8-80 80-80l384 0c44.2 0 80 35.8 80 80l0 16c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l0 16c0 44.2-35.8 80-80 80L80 416c-44.2 0-80-35.8-80-80L0 176z" /> 
+                                   <line x1="0" y1="0" x2="576" y2="512" stroke="red" stroke-width="20" />
+                               </svg>
+                           </button> 
+                            <!-- bateria muerta  lb0 mp1: falla de bateria/bateria deteriorada  -->
+                            <button *ngIf="getDeviceStatusPM(data.data.PM) === 1" (click)="reebotThis('alim')"
+                                class="card-title svgContent notButton" title="Bateria deteriorada ">
+                                <svg class="batMargin" xmlns="http://www.w3.org/2000/svg" width="26px" viewBox="0 0 576 512">
+                                    <path
+                                        d="M80 160c-8.8 0-16 7.2-16 16l0 160c0 8.8 7.2 16 16 16l384 0c8.8 0 16-7.2 16-16l0-160c0-8.8-7.2-16-16-16L80 160zM0 176c0-44.2 35.8-80 80-80l384 0c44.2 0 80 35.8 80 80l0 16c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32l0 16c0 44.2-35.8 80-80 80L80 416c-44.2 0-80-35.8-80-80L0 176z" />
+                                    <line x1="0" y1="0" x2="576" y2="512" stroke="red" stroke-width="20" />
+                                </svg>
+                            </button>
+                            <!-- por apagar  lb0 mp0: 1 min cuando el equipo se esta por apagar  -->
+                             <button *ngIf="getDeviceStatusPM(data.data.PM) === 0" (click)="reebotThis('alim')"
+                                class="card-title svgContent notButton" title="El equipo se esta por apagar ">
+                                <svg class="batMargin" xmlns="http://www.w3.org/2000/svg" width="26px" viewBox="0 0 576 512">
+                                    <path
+                                        d="M96 0C78.3 0 64 14.3 64 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM288 0c-17.7 0-32 14.3-32 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l0 32c0 77.4 55 142 128 156.8l0 67.2c0 17.7 14.3 32 32 32s32-14.3 32-32l0-67.2c12.3-2.5 24.1-6.4 35.1-11.5c-2.1-10.8-3.1-21.9-3.1-33.3c0-80.3 53.8-148 127.3-169.2c.5-2.2 .7-4.5 .7-6.8c0-17.7-14.3-32-32-32L32 160zM432 512a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm0-96a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm0-144c8.8 0 16 7.2 16 16l0 80c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-80c0-8.8 7.2-16 16-16z" />
+                                </svg>
+                            </button>
+                            &nbsp;
+                        </div>
+                        <!-- RESET MODEM -->
+                        <div class="resetModem">
+                            {{es.resetModem}}  <input class="checkboxEach resetModenCheck resetModemMargin" title="resetear modem?" type="checkbox"
+                            [(ngModel)]="data.reset_modem">
+                        </div> 
+                        <div class="d-flex">
+                            <!-- BOTONES REINICIAR Y ACTUALIZAR -->
+                            <button class="x-medium btnFootCard btn-primary" (click)="resetOne(data)">{{es.reiniciar}}
+                            </button>
+                            <button class="x-medium btnFootCard  btn-primary" (click)="addToList(data.name, true)">
+                                {{es.actualizar}} </button>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <div style="display: flex; align-items: center;">
+                              <span class="dateText">{{es.fechaStatus}}</span>&nbsp;{{data.date}}
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                              <span class="dateText">{{es.fechaBoot}}</span>&nbsp;{{data.data.bootDate}}
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

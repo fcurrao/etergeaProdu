@@ -1,0 +1,22 @@
+:host {
+    width: 90%;
+    text-align: center;
+    margin: 0% 5% 0% 5%;
+}
+
+.content-wrapper {
+    display: flex; 
+    flex-direction: row; 
+    height: 85%;
+  }
+
+  @media (min-width: 300px) and (max-width: 800px) {
+    .content-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 85%;
+        flex-wrap: nowrap;
+        align-items: center;
+      }
+
+  }

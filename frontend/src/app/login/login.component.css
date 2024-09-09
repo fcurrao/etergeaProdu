@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.centerDiv {
+    display: flex;
+    justify-content: center;
+    height: auto;
+    align-items: flex-start;
+    margin: 12%;
+}
+
+.inputDiv {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 400px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #4F759B;
+    font-family: system-ui !important;   
+    font-size: medium;
+}
+
+.inputRow {
+    display: flex;
+    align-items: center; 
+    margin: 10px 0; 
+    width: 100%; 
+    font-family: system-ui !important; 
+    font-size: medium;
+}
+
+.inputRow label {
+    color:white; 
+    margin-right: 10px; 
+    width: 120px;  
+    font-family: system-ui !important; 
+    font-size: medium;
+}
+
+.logo{
+    width: 180px;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 130px); 
+    padding: 10px; 
+    border: 1px solid #ccc;  
+    border-radius: 4px;  
+    background-color: white !important; 
+}
+
+.btn-primary {
+    margin: 3%;
+    padding: 4px 12px;
+    width: auto;
+    height: 35px;
+    color: white;
+    background-color: #5D5179 !important;
+    font-size: medium;
+    font-weight: 600;
+    border: transparent;
+    outline: transparent !important;
+    font-family: system-ui !important; 
+}
+
+.title{
+    font-size: x-large;
+    color: white;
+}
+.inputDiv input[type="text"], .inputDiv input[type="password"] {
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    box-shadow: 0 0 0px 1000px white inset !important;
+}
+

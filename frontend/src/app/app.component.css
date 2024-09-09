@@ -1,0 +1,69 @@
+/* /* /* /* /* /* /* /* /* /* /* /* /* /* /* /*  
+Info de app:
+
+-Paleta:
+#A2FAA3 (verde claro)
+#92C9B1 (verde pastel oscurito)
+#4F759B (AZUL PASTEL)
+#5D5179 (violeta pastel oscurito) 
+#d2bcd7 ( Rosa)
+#decee19c (rosa oscuro)
+rgb(255 200 182) (rojo pastel)
+#FF3B30 (rojo chillon)
+
+-Font:
+  font-family: system-ui;
+
+/* /* /* /* /* /* /* /* /* /* /* /* /* /* /* */  
+
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que la barra superior esté encima de otros elementos */
+}
+
+.content-wrapper {
+  padding-top: 50px; /* Ajusta esto para que no se solape con el topbar */
+  padding-bottom: 50px; /* Ajusta esto para que no se solape con el footer */
+  overflow-y: auto;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Asegura que el footer esté encima de otros elementos */
+}
+
+
+  .wrapper{ 
+    height: 95%;
+    overflow-y: auto;
+    background: white;
+  }
+ 
+  .content-wrapper {
+    /* display: block; */
+    /* height: 100%; */
+  }
+
+  f
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Ocultar el logo de Leaflet */
+.leaflet-control-container .leaflet-control-logo {
+  display: none !important;
+}
+
+@media (min-width: 200px) and (max-width: 500px) {
+  
+.wrapper{
+  height: 92% ;
+}
+  }

@@ -1,0 +1,94 @@
+ 
+export const data = [
+{  
+    "GPS":{
+       "status":"error",
+       "error":"No se pudo obtener informacion del GPS en /dev/modem1_AT2",
+       "devices":{
+          "/dev/modem0_AT2":{
+             "puerto":"/dev/modem0_AT2",
+             "status":"ok",
+             "data":{
+                "lat":" 3438.717338S",
+                "long":"05822.069297W",
+                "date":"020724",
+                "time":"181747.0"
+             }
+          },
+          "/dev/modem1_AT2":{
+             "puerto":"/dev/modem1_AT2",
+             "status":"nok",
+             "data":null
+          }
+       }
+    },
+    "GPRS":{
+       "status":"success",
+       "error":null,
+       "interfaces":{
+          "ppp0":{
+             "is_up":true,
+             "has_internet":true,
+             "can_resolve_dns":true
+          },
+          "ppp1":{
+             "is_up":true,
+             "has_internet":true,
+             "can_resolve_dns":true
+          }
+       }
+    },
+    "PM":{
+       "lowBattery":false,
+       "mainPower":"connected"
+    }
+ },
+ {
+   "GPS":{
+      "status":"ok",
+      "error":"Se obtuvo info",
+      "devices":{
+         "/dev/modem0_AT4":{
+            "puerto":"/dev/modem0_AT4",
+            "status":"ok",
+            "data":{
+               "lat":" 3458.717338S",
+               "long":"05822.069297W",
+               "date":"020724",
+               "time":"181747.0"
+            }
+         },
+         "/dev/modem1_AT4":{
+            "puerto":"/dev/modem1_AT4",
+            "status":"ok",
+            "data":{
+               "lat":" 3458.717338S",
+               "long":"05822.069297W",
+               "date":"020724",
+               "time":"181747.0"
+            }
+         }
+      }
+   },
+   "GPRS":{
+      "status":"success",
+      "error":null,
+      "interfaces":{
+         "ppp0":{
+            "is_up":true,
+            "has_internet":true,
+            "can_resolve_dns":true
+         },
+         "ppp1":{
+            "is_up":true,
+            "has_internet":true,
+            "can_resolve_dns":true
+         }
+      }
+   },
+   "PM":{
+      "lowBattery":true,
+      "mainPower":"connected"
+   }
+}
+];

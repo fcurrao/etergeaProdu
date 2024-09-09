@@ -1,0 +1,34 @@
+.mapsContainer {
+    height:100%;
+    width: 100%;
+    position: relative;  
+}
+
+.custom-icon {
+    position: relative;
+    text-align: center;
+  }
+  
+  .icon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .marker-icon {
+    width: 21px; 
+    height: 23px;  
+  }
+  
+  .icon-text {
+    position: absolute;
+    top: -10px;  
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;  
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 22px;  
+    color: black;  
+  }
+
+  

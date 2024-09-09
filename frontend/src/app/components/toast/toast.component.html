@@ -1,0 +1,11 @@
+<div class="toast-container">
+    <div *ngFor="let toast of toastService.toasts" class="toast" [class]="toast.classname">
+      <div *ngIf="isTemplate(toast); else text">
+        <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
+      </div>
+      <ng-template #text>{{ toast.textOrTpl }}</ng-template>
+      <button class="close-button" (click)="toastService.remove(toast)">
+        <svg xmlns="http://www.w3.org/2000/svg" style="height: 25px;     margin-top: 5px;" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
+      </button>
+    </div>
+  </div>

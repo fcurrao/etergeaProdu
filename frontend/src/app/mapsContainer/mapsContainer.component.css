@@ -1,0 +1,30 @@
+:host {
+  width: 90%;
+  text-align: center;
+  margin: 0% 5% 0% 5%;
+}
+
+#map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top:5%;
+}
+
+#map {
+  width: 80%;
+  height: calc(100vh + -300px);
+    overflow: hidden;
+}
+
+
+ 
+
+@media (min-width: 250px) and (max-width: 800px) {
+  #map { 
+    height: calc(100vh + -200px) !important;
+  }
+
+} 
+ 

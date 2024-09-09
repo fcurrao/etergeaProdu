@@ -1,0 +1,14 @@
+<div class="centerDiv">
+    <div class="inputDiv">
+        <img src="../../../assets/logo_mega.png" class="logo"> 
+        <div class="inputRow">
+            <label for="username">{{es.usuario}}:</label>
+            <input type="text" id="username" placeholder="Usuario">
+        </div>
+        <div class="inputRow">
+            <label for="password">{{es.password}}:</label>
+            <input type="password"  (keydown)="login($event)" id="password" name="password" placeholder="Ingresa tu contraseña">
+        </div>
+        <button class="btn btn-primary" (click)="login()">{{es.aceptar}}</button>
+    </div>
+</div>

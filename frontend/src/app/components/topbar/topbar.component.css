@@ -1,0 +1,160 @@
+.noP {
+    font-size: larger;
+    margin-right: 2%;
+    width: auto;
+    margin: 0;
+}
+
+.w-more {
+    cursor: pointer;
+    min-width: 30px;
+}
+
+.wrap {
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin-right: 35px;
+    color: white;
+    font-size: medium;
+    font-family: system-ui;
+}
+
+.noA {
+    text-decoration: none !important;
+}
+
+.iconNavbar {
+    margin-bottom: 0px !important;
+    margin-top: 2%;
+    margin-left: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 150px;
+}
+
+.subMenu {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    height: 55px;
+    display: flex;
+    width: 130px;
+    align-items: center;
+    justify-content: center;
+    /* box-shadow: 1px -5px 15px 1px #2f2f2f; */
+    background: #4F759B;
+    font-family: system-ui;
+    font-size: 14px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.subMenu:hover {
+    transform: scale(1.02);
+    text-decoration: underline;
+    margin-right: 1px;
+}
+
+.noB {
+    margin-right: 2%;
+    width: auto;
+    margin: 0;
+    font-size: large;
+    background: none;
+    border: none;
+    color: white;
+    font-family: system-ui;
+    justify-content: flex-end;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.d-flex {
+    padding: 0 0.5%;
+    display: flex;
+    align-items: center;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.etergea {
+    color: white;
+    font-size: 35px;
+    font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.2cap;
+    left: -20%;
+    margin: 5% 0% !important;
+    position: relative;
+}
+
+.userClass{
+    transition: transform 0.3s ease-in-out;
+    }
+    
+.background {
+    background: #4F759B; 
+    width: 100%;
+    height: auto;
+    color: white;
+}
+
+.whiteAndActive {
+    fill: white;
+}
+
+.whiteAndActive.active {
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.1cap;
+    fill: white;
+}
+
+
+.userClass:hover{
+    margin-left: -5px;
+    font-weight: 800;
+    transform: scale(1.1);
+}
+.wrap:hover {
+    font-weight: 800;
+    color: white;
+    transform: scale(1.1);
+    fill: white !important;
+}
+
+.active .wrap {
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.whiteAndActive:hover {
+    fill: white;
+}
+
+.active .whiteAndActive {
+    fill: white;
+}
+
+@media (max-width: 599px) {
+.etergea { 
+    left: 0% !important;
+} 
+}
+
+@media (max-width: 499px) {
+.etergea {
+    display: none;
+    left: 0% !important;
+}
+}
